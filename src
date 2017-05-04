@@ -1,11 +1,11 @@
-function[Solution,Error_estimate,Number_of_iterations,flag]=Helmholtz(N,w,C)
+function[Solution,Error_estimate,Number_of_iterations,flag]=Helmholtz(N,w,C1,C2)
 
 % The constants
 n=N;
 ax=-pi; ay=-pi; bx=pi; by=pi;
-if C==1
+if C1==1
     gamma=-pi;
-elseif C==0
+elseif C1==0
     gamma=0;
 end
 % Generating x,y
@@ -17,9 +17,9 @@ u(:,1)=phiab; u(:,n)=psiab;% this creates the nxn matrix with the first set of b
 
 
 %% 
-if C==1
+if C2==1
     F = cos((pi/2)*(2*((x-ax)./(bx-ax))+1)).*sin(pi*((y-ay)./(by-ay)));
-elseif C==0
+elseif C2==0
     F=0;
 end
 %%
