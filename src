@@ -1,10 +1,13 @@
-function[Solution,Error_estimate,Number_of_iterations]=Helmholtz(N,w)
+function[Solution,Error_estimate,Number_of_iterations,flag]=Helmholtz(N,w,C)
 
 % The constants
 n=N;
 ax=-pi; ay=-pi; bx=pi; by=pi;
-gamma=-pi;
-%gamma=0;
+if C==1
+    gamma=-pi;
+elseif C==0
+    gamma=0;
+end
 % Generating x,y
 x=linspace(ax,bx,n); y=linspace(ay,by,n);
 % Boundary conditions
@@ -14,7 +17,11 @@ u(:,1)=phiab; u(:,n)=psiab;% this creates the nxn matrix with the first set of b
 
 
 %% 
-F = cos((pi/2)*(2*((x-ax)./(bx-ax))+1)).*sin(pi*((y-ay)./(by-ay)));
+if C==1
+    F = cos((pi/2)*(2*((x-ax)./(bx-ax))+1)).*sin(pi*((y-ay)./(by-ay)));
+elseif C==0
+    F=0;
+end
 F1=F';
 h=(bx-ax)/n;
 
@@ -42,4 +49,5 @@ S=S0+S1+S2+S3+S4;
 U_solve=S.*U;
 %% 
 
-[Solution,Error_estimate,Number_of_iterations,flag]=SOR_trial1(U_solve,zeros(n,1),F1,w,1e4,0.01);
+[Solution,Error_estimate,Number_of_iterations,flag]=SOR_trial2(U_solve,zeros(n,1),F1,w,1e4,0.01);
+end 
