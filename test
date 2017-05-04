@@ -2,14 +2,16 @@
  %The following are the test cases to be applied to the Helmholtz program,
  %the Helmholtz program will take the following inputs
  %
- %                      Helmholtz(N,w,C), where 
+ %                      Helmholtz(N,w,C1,C2), where 
  %             N=number of nodes on the x and y direction
  %             w=the relaxation parameter, to use Gauss-Seidel, set this
  %             value to 1, for SOR set this value to any other value but 1
  %             within the range of 0 to 2
- %             C= setting this value as 1 will have the program run
+ %             C1= setting this value as 1 will have the program run
  %             normally, setting this value to zero will change the code
- %             constants of Gamma and F to be 0
+ %             constants of Gamma to 0
+ %             C2= setting this value to 0 will change the code collumn
+ %             vector of F to 0
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 
@@ -18,6 +20,5 @@
 
 %Unsupress the line bellow to run the Helmholtz program using SOR with w=.5
 %[Solution,Error_estimate,Number_of_Iterations,flag]=Helmholtz(11,0.5,1)
-
 
 
